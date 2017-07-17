@@ -1,0 +1,50 @@
+虚拟机中GTK+安装
+
+ linux下GTK+的一键安装和配置：(ubuntu下配置(未试验，仅供参考))
+
+ sudo apt-get install libgtk2.0*      
+
+ linux下GTK+的一键安装和配置：(fedora16和centos下配置成功)
+
+必要组件：
+
+ yum install gtk2 gtk2-devel gtk2-devel-docs
+
+可选组件：
+
+ yum install gnome-devel gnome-devel-docs
+
+安装好之后，写个程序测试下
+
+#include   <gtk/gtk.h>
+
+  int main(int argc, char *argv[])  {  
+
+    GtkWidget *windows;  
+
+    gtk_init(&argc,&argv);  
+
+    windows = gtk_window_new(GTK_WINDOW_TOPLEVEL);  
+
+    gtk_widget_show(windows);  
+
+     gtk_main();  
+
+     return 0;  
+
+}  
+
+GTK+程序的编译链接执行
+
+$gcc main.c-o main `pkg-config --libs --cflags gtk+-2.0`
+$./main
+若出现对话框代表成功！
+
+ 
+
+我遇到的问题
+
+1：找不到“gtk/gtk.h”
+
+主要原因是在拷贝`pkg-config --libs --cflags gtk+-2.0`  这句时对不小心出错
+注意两边的不是单引号，是Tab键上方的那个键，我称之为波浪键！
